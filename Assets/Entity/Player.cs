@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float upSpeed = -0.01f;
     public float upBoost = 10;
     public float downBoost = -10;
+    public float resetTime = 0.3f;
     private float nullSpeed = 0;
 
     // Start is called before the first frame update
@@ -29,12 +30,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             rb.AddRelativeForce(new Vector2(0, upBoost), ForceMode2D.Impulse);
-            Invoke("ResetVelocity", 0.2f);
+            Invoke("ResetVelocity", resetTime);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             rb.AddRelativeForce(new Vector2(0, downBoost), ForceMode2D.Impulse);
-            Invoke("ResetVelocity", 0.2f);
+            Invoke("ResetVelocity", resetTime);
         }
     }
 
