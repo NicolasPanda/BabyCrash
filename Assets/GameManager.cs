@@ -5,16 +5,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
+    public static int rattle = 0;
+    private static GameManager instance;
+
     private void Awake()
     {
-        _instance = this;
+        instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public static void setRattle(int value)
+    {
+        rattle = value;
     }
 
     // Update is called once per frame

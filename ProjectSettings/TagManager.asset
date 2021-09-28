@@ -10,6 +10,7 @@ TagManager:
   - Body
   - PlayerBalloon
   - Rattle
+  - Balloon
   layers:
   - Default
   - TransparentFX
