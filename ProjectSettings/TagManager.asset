@@ -7,6 +7,9 @@ TagManager:
   - Floor
   - Sky
   - Enemy
+  - Body
+  - PlayerBalloon
+  - Rattle
   layers:
   - Default
   - TransparentFX

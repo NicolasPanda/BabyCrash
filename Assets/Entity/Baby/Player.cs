@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public float resetTime = 0.3f;
     private float nullSpeed = 0;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,34 @@ public class Player : MonoBehaviour
             Invoke("ResetVelocity", resetTime);
         }
     }
+
+    public static void BodyCollision(Collision2D collision)
+    {
+        if(collision.transform.tag == "Floor")
+        {
+            Debug.Log("DIED");
+        }
+    }
+
+    public static void BodyTrigger(Collider2D collision)
+    {
+        if (collision.tag == "Rattle")
+        {
+            Debug.Log("Collect");
+
+            Destroy(collision.gameObject.transform.parent.gameObject);
+        }
+    }
+
+    public static void BalloonCollision(Collision2D collision)
+    {
+        if (collision.transform.tag == "Sky")
+        {
+            Debug.Log("pop all ballon");
+        }
+    }
+
+
 
     void ResetVelocity()
     {

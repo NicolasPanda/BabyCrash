@@ -1442,6 +1442,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2448245371897793288, guid: f9a2704e11d1be24cae1d6875b7ba68f, type: 3}
+      propertyPath: m_TagString
+      value: PlayerBalloon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448245372319192613, guid: f9a2704e11d1be24cae1d6875b7ba68f, type: 3}
+      propertyPath: m_TagString
+      value: Body
+      objectReference: {fileID: 0}
     - target: {fileID: 2448245372809773603, guid: f9a2704e11d1be24cae1d6875b7ba68f, type: 3}
       propertyPath: speed
       value: 3

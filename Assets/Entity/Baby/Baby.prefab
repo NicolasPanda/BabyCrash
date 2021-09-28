@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2448245371897793289}
   - component: {fileID: 2448245371897793335}
   - component: {fileID: 2448245371897793334}
+  - component: {fileID: 1895315036170629580}
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -109,6 +110,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1895315036170629580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448245371897793288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06725e7e4eba2b548be7fbbd8c6d87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2448245372319192613
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +133,7 @@ GameObject:
   - component: {fileID: 2448245372319192610}
   - component: {fileID: 2448245372319192608}
   - component: {fileID: 2448245372319192611}
+  - component: {fileID: 5278872151551922744}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -218,6 +232,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5278872151551922744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448245372319192613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93d046b0307cba49b5434f7afb2827d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2448245372809773604
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +298,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2448245372809773603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,3 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1810c5789cfd340bb64e50c673ecaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  downSpeed: 0.01
+  upSpeed: -0.01
+  upBoost: 10
+  downBoost: -10
+  resetTime: 0.3
