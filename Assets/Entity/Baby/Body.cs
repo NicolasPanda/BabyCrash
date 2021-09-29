@@ -25,4 +25,9 @@ public class Body : MonoBehaviour
     {
         Player.BodyTrigger(collision);
     }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        Player.BodyTriggerExit(collision);
+    }
 }

@@ -20,4 +20,9 @@ public class Balloon : MonoBehaviour
     {
         Player.BalloonCollision(collision);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player.BalloonTrigger(collision);
+    }
 }
