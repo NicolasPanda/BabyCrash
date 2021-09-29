@@ -37,9 +37,15 @@ public class MenuManage : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.Space) && currentMenu == MenuType.Dead)
+        {
+            ResetScene();
+        }
+
         if (Player.dead)
         {
-            ChangeCurrentMenu(MenuType.Dead);  
+            ChangeCurrentMenu(MenuType.Dead);
+            GameManager.PauseGame();
         }
 
     }
@@ -58,8 +64,9 @@ public class MenuManage : MonoBehaviour
 
     public void ResetScene()
     {
-        GameManager.ResetScene();
+        ChangeCurrentMenu(MenuType.Main);
         GameManager.ResumeGame();
+        GameManager.ResetScene();
     }
 
     private void ChangeCurrentMenu(MenuType menu)

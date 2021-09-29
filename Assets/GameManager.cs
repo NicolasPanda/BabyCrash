@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(scene.name);
+        Player.SetPlayerDead(false);
+        Player.ResetBalloon();
+        rattle = 0;
     }
 
     // Update is called once per frame

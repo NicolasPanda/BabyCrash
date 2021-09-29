@@ -42,15 +42,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (!dead)
         {
-            rb.AddRelativeForce(new Vector2(0, upBoost), ForceMode2D.Impulse);
-            Invoke("ResetVelocity", resetTime);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            rb.AddRelativeForce(new Vector2(0, downBoost), ForceMode2D.Impulse);
-            Invoke("ResetVelocity", resetTime);
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                rb.AddRelativeForce(new Vector2(0, upBoost), ForceMode2D.Impulse);
+                Invoke("ResetVelocity", resetTime);
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                rb.AddRelativeForce(new Vector2(0, downBoost), ForceMode2D.Impulse);
+                Invoke("ResetVelocity", resetTime);
+            }
         }
         if (balloonCount <= 0)
         {
@@ -74,7 +77,7 @@ public class Player : MonoBehaviour
     {
         if(collision.transform.tag == "Floor")
         {
-            Debug.Log("DIED");
+            dead = true;
         }
     }
 
@@ -97,6 +100,23 @@ public class Player : MonoBehaviour
             }
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
+        if (collision.tag == "Enemy")
+        {
+            dead = true;
+        }
+        if (collision.tag == "Thruster")
+        {
+            rb.AddRelativeForce(new Vector2(0, 3), ForceMode2D.Impulse);
+        }
+    }
+
+    public static void BodyTriggerExit(Collider2D collision)
+    {
+        if (collision.tag == "Thruster")
+        {
+            rb.AddRelativeForce(new Vector2(0, 3), ForceMode2D.Impulse);
+            rb.velocity = new Vector2(speed, 0);
+        }
     }
 
     public static void BalloonCollision(Collision2D collision)
@@ -114,6 +134,17 @@ public class Player : MonoBehaviour
             balloonCount--;
             Destroy(collision.gameObject);
         }
+    }
+
+
+    public static void SetPlayerDead(bool value)
+    {
+        dead = value;
+    }
+
+    public static void ResetBalloon()
+    {
+        balloonCount = 1;
     }
 
 
