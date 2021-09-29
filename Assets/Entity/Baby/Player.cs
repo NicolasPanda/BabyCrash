@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     private static Rigidbody2D rb;
 
+    public static bool dead = false;
     public float playerSpeed = 3;
     public static float speed;
     public float downSpeed = 0.01f;
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
         if (collision.tag == "Rattle")
         {
             int newValue = GameManager.rattle + 1;
-            GameManager.setRattle(newValue);
+            GameManager.SetRattle(newValue);
             rattleCount.text = newValue.ToString();
 
             Destroy(collision.gameObject.transform.parent.gameObject);
@@ -117,8 +118,24 @@ public class Player : MonoBehaviour
 
 
 
-    void ResetVelocity()
+    public void ResetVelocity()
     {
         rb.velocity = new Vector2(speed, 0);
+        if (balloonCount <= 0)
+        {
+            rb.gravityScale = 10;
+        }
+        if (balloonCount == 1)
+        {
+            rb.gravityScale = downSpeed;
+        }
+        if (balloonCount == 2)
+        {
+            rb.gravityScale = nullSpeed;
+        }
+        if (balloonCount == 3)
+        {
+            rb.gravityScale = upSpeed;
+        }
     }
 }
