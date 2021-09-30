@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
     public float resetTime = 0.3f;
     private float nullSpeed = 0;
 
+    public SpriteRenderer balloonRenderer;
+    public Sprite oneBalloonSprite;
+    public Sprite twoBalloonSprite;
+    public Sprite threeBalloonSprite;
+
     private bool isCooldown = false;
     [SerializeField] private float cooldownTime = 1.5f;
     private float cooldownTimer;
@@ -68,18 +73,22 @@ public class Player : MonoBehaviour
         if (balloonCount <= 0)
         {
             rb.gravityScale = 10;
+            balloonRenderer.sprite = null;
         }
         if (balloonCount == 1)
         {
             rb.gravityScale = downSpeed;
+            balloonRenderer.sprite = oneBalloonSprite;
         }
         if (balloonCount == 2)
         {
             rb.gravityScale = nullSpeed;
+            balloonRenderer.sprite = twoBalloonSprite;
         }
         if (balloonCount == 3)
         {
             rb.gravityScale = upSpeed;
+            balloonRenderer.sprite = threeBalloonSprite;
         }
 
         if (isCooldown)
@@ -189,18 +198,22 @@ public class Player : MonoBehaviour
         if (balloonCount <= 0)
         {
             rb.gravityScale = 10;
+            balloonRenderer.sprite = null;
         }
         if (balloonCount == 1)
         {
             rb.gravityScale = downSpeed;
+            balloonRenderer.sprite = oneBalloonSprite;
         }
         if (balloonCount == 2)
         {
             rb.gravityScale = nullSpeed;
+            balloonRenderer.sprite = twoBalloonSprite;
         }
         if (balloonCount == 3)
         {
             rb.gravityScale = upSpeed;
+            balloonRenderer.sprite = threeBalloonSprite;
         }
     }
 }
