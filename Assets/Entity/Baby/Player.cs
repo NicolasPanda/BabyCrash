@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     public static Text rattleCount;
     public static int balloonCount = 1;
 
+    public static string[] colors = { "#1d71b8", "#3aaa35", "#ffed00", "#e30613" };
+
 
     private void Awake()
     {
@@ -131,6 +133,10 @@ public class Player : MonoBehaviour
             int newValue = GameManager.rattle + 1;
             GameManager.SetRattle(newValue);
             rattleCount.text = newValue.ToString();
+            Color newLetterColor = new Color();
+            string hex = colors[Random.Range(0, colors.Length)];
+            ColorUtility.TryParseHtmlString(hex, out newLetterColor);
+            rattleCount.color = newLetterColor;
 
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
