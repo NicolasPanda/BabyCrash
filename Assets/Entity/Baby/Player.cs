@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     private static Rigidbody2D rb;
 
+    public Image imageCooldown;
+
     public static bool dead = false;
     public float playerSpeed = 3;
     public static float speed;
@@ -17,10 +19,21 @@ public class Player : MonoBehaviour
     public float resetTime = 0.3f;
     private float nullSpeed = 0;
 
+    public SpriteRenderer balloonRenderer;
+    public Sprite oneBalloonSprite;
+    public Sprite twoBalloonSprite;
+    public Sprite threeBalloonSprite;
+
+    private bool isCooldown = false;
+    [SerializeField] private float cooldownTime = 1.5f;
+    private float cooldownTimer;
+
     public Text inputCount;
 
     public static Text rattleCount;
     public static int balloonCount = 1;
+
+    public static string[] colors = { "#1d71b8", "#3aaa35", "#ffed00", "#e30613" };
 
 
     private void Awake()
@@ -37,39 +50,71 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(speed, 0);
 
         rb.gravityScale = downSpeed;
+
+        imageCooldown.fillAmount = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!dead)
+        if (!dead && !isCooldown)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 rb.AddRelativeForce(new Vector2(0, upBoost), ForceMode2D.Impulse);
                 Invoke("ResetVelocity", resetTime);
+                useAbility();
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 rb.AddRelativeForce(new Vector2(0, downBoost), ForceMode2D.Impulse);
                 Invoke("ResetVelocity", resetTime);
+                useAbility();
             }
         }
         if (balloonCount <= 0)
         {
             rb.gravityScale = 10;
+            balloonRenderer.sprite = null;
         }
         if (balloonCount == 1)
         {
             rb.gravityScale = downSpeed;
+            balloonRenderer.sprite = oneBalloonSprite;
         }
         if (balloonCount == 2)
         {
             rb.gravityScale = nullSpeed;
+            balloonRenderer.sprite = twoBalloonSprite;
         }
         if (balloonCount == 3)
         {
             rb.gravityScale = upSpeed;
+            balloonRenderer.sprite = threeBalloonSprite;
+        }
+
+        if (isCooldown)
+        {
+            ApplyCooldown();
+        }
+    }
+
+    void useAbility()
+    {
+        isCooldown = true;
+        cooldownTimer = cooldownTime;
+    }
+    void ApplyCooldown()
+    {
+        cooldownTimer -= Time.deltaTime;
+        if (cooldownTimer < 0.0f)
+        {
+            isCooldown = false;
+            imageCooldown.fillAmount = 0.0f;
+        }
+        else
+        {
+            imageCooldown.fillAmount = cooldownTimer / cooldownTime;
         }
     }
 
@@ -88,6 +133,10 @@ public class Player : MonoBehaviour
             int newValue = GameManager.rattle + 1;
             GameManager.SetRattle(newValue);
             rattleCount.text = newValue.ToString();
+            Color newLetterColor = new Color();
+            string hex = colors[Random.Range(0, colors.Length)];
+            ColorUtility.TryParseHtmlString(hex, out newLetterColor);
+            rattleCount.color = newLetterColor;
 
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
@@ -155,18 +204,22 @@ public class Player : MonoBehaviour
         if (balloonCount <= 0)
         {
             rb.gravityScale = 10;
+            balloonRenderer.sprite = null;
         }
         if (balloonCount == 1)
         {
             rb.gravityScale = downSpeed;
+            balloonRenderer.sprite = oneBalloonSprite;
         }
         if (balloonCount == 2)
         {
             rb.gravityScale = nullSpeed;
+            balloonRenderer.sprite = twoBalloonSprite;
         }
         if (balloonCount == 3)
         {
             rb.gravityScale = upSpeed;
+            balloonRenderer.sprite = threeBalloonSprite;
         }
     }
 }
