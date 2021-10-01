@@ -20,9 +20,12 @@ public class Player : MonoBehaviour
     private float nullSpeed = 0;
 
     public SpriteRenderer balloonRenderer;
+    public SpriteRenderer babyRenderer;
     public Sprite oneBalloonSprite;
     public Sprite twoBalloonSprite;
     public Sprite threeBalloonSprite;
+    public Sprite deadBabySprite;
+    public Sprite BabySprite;
 
     private bool isCooldown = false;
     [SerializeField] private float cooldownTime = 1.5f;
@@ -91,6 +94,11 @@ public class Player : MonoBehaviour
         {
             rb.gravityScale = upSpeed;
             balloonRenderer.sprite = threeBalloonSprite;
+        }
+
+        if (dead)
+        {
+            babyRenderer.sprite = deadBabySprite;
         }
 
         if (isCooldown)
@@ -181,7 +189,7 @@ public class Player : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             balloonCount--;
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 
