@@ -33,8 +33,17 @@ public class Player : MonoBehaviour
 
     public Text inputCount;
 
+    public AudioClip rattleSound;
+    public static AudioClip rattlesSound;
+
+    public AudioClip deadSound;
+    public static AudioClip deadsSound;
+
     public static Text rattleCount;
     public static int balloonCount = 1;
+
+    public AudioSource playeraudioSource;
+    public static AudioSource audioSource;
 
     public static string[] colors = { "#1d71b8", "#3aaa35", "#ffed00", "#e30613" };
 
@@ -43,6 +52,9 @@ public class Player : MonoBehaviour
     {
         rattleCount = inputCount;
         speed = playerSpeed;
+        audioSource = playeraudioSource;
+        rattlesSound = rattleSound;
+        deadsSound = deadSound;
     }
 
     // Start is called before the first frame update
@@ -131,6 +143,7 @@ public class Player : MonoBehaviour
         if(collision.transform.tag == "Floor")
         {
             dead = true;
+            
         }
     }
 
@@ -145,6 +158,9 @@ public class Player : MonoBehaviour
             string hex = colors[Random.Range(0, colors.Length)];
             ColorUtility.TryParseHtmlString(hex, out newLetterColor);
             rattleCount.color = newLetterColor;
+
+            audioSource.clip = rattlesSound;
+            audioSource.Play();
 
             Destroy(collision.gameObject.transform.parent.gameObject);
         }
