@@ -319,8 +319,11 @@ MonoBehaviour:
   downBoost: -10
   resetTime: 0.3
   balloonRenderer: {fileID: 2448245371897793335}
+  babyRenderer: {fileID: 2448245372319192608}
   oneBalloonSprite: {fileID: 21300000, guid: b87a22fe05401404a9e086f1bb2d53fe, type: 3}
   twoBalloonSprite: {fileID: 21300000, guid: 6598fde659d258847ba39e6b08e8d52c, type: 3}
   threeBalloonSprite: {fileID: 21300000, guid: 8081a15fa81b9104592bab204c5d31c3, type: 3}
+  deadBabySprite: {fileID: 21300000, guid: 7b90d7ed03326414aad3a030c4b1a712, type: 3}
+  BabySprite: {fileID: 21300000, guid: ab651822a59f12f4cbf6a82a3998204f, type: 3}
   cooldownTime: 1.5
   inputCount: {fileID: 0}
