@@ -11,6 +11,7 @@ public class Camera : MonoBehaviour
     public float minHeight = 10;
     public float maxHeight = 10;
 
+
     // Start is called before the first frame update
     void Start()
     {
