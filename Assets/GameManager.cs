@@ -41,6 +41,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public static void GoToSceneName(String name)
+    {
+        SceneManager.LoadScene(name);
+    }
+    
+
     public static void ResetScene()
     {
         Scene scene = SceneManager.GetActiveScene(); 
